@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>All Blog Posts</h2>
+
+<form action="{{ url_for('search') }}" method="GET" class="mb-4">
+    <input type="text" name="query" class="form-control" placeholder="Search posts...">
+</form>
+
+{% for post in posts %}
+<div class="card mb-3">
+    <div class="card-body">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content[:150] }}...</p>
+        <small>Author: {{ post.author }}</small>
+        <br><br>
+        <a href="{{ url_for('view_post', post_id=post.id) }}" class="btn btn-primary">Read More</a>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
